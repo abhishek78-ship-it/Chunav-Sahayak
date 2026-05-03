@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chunav Sahayak — Your Indian Election Awareness Assistant</title>
+  <meta name="description" content="Chunav Sahayak is an AI-powered interactive assistant that helps Indian citizens understand the election process, voter registration, EVM voting, NOTA, and more." />
+  <meta name="keywords" content="Indian elections, voter registration, EVM, NOTA, Lok Sabha, Rajya Sabha, Election Commission of India, Chunav Sahayak" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- HERO / SPLASH SCREEN                        -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div id="splash-screen" class="splash-screen">
+    <div class="splash-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+    </div>
+    <div class="splash-content">
+      <div class="splash-flag">
+        <div class="flag-stripe saffron"></div>
+        <div class="flag-stripe white"><span class="ashoka-chakra">☸</span></div>
+        <div class="flag-stripe green"></div>
+      </div>
+      <img src="logo.png" alt="Chunav Sahayak Logo" class="splash-logo-img" />
+      <h1 class="splash-title">चुनाव सहायक<br/><span class="gradient-text">Chunav Sahayak</span></h1>
+      <p class="splash-subtitle">Your AI-Powered Indian Election Awareness Assistant<br/>Understand. Participate. Empower.</p>
+      <button id="enter-btn" class="btn-primary btn-glow" style="margin-bottom: 10px;">
+        <span>🚀 Enter App</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- MAIN APP                                    -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div id="app-shell" class="app-shell hidden">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <img src="logo.png" alt="Logo" class="sidebar-logo-img" />
+        <span class="sidebar-brand">Chunav Sahayak</span>
+      </div>
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-panel="ask" id="nav-ask">
+          <span class="nav-icon">💬</span><span class="nav-label">Ask Anything</span>
+        </button>
+        <button class="nav-item" data-panel="timeline" id="nav-timeline">
+          <span class="nav-icon">📅</span><span class="nav-label">Election Timeline</span>
+        </button>
+        <button class="nav-item" data-panel="howtovote" id="nav-howtovote">
+          <span class="nav-icon">✅</span><span class="nav-label">How to Vote</span>
+        </button>
+        <button class="nav-item" data-panel="quiz" id="nav-quiz">
+          <span class="nav-icon">🧠</span><span class="nav-label">Test Yourself</span>
+        </button>
+        <button class="nav-item" data-panel="facts" id="nav-facts">
+          <span class="nav-icon">📊</span><span class="nav-label">Key Facts</span>
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-branding">
+          <span class="powered-by">Powered by Gemini AI</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MOBILE TOPBAR -->
+    <header class="topbar" id="topbar">
+      <button class="topbar-menu" id="topbar-menu-btn" aria-label="Open menu">☰</button>
+      <span class="topbar-title">Chunav Sahayak</span>
+      <img src="logo.png" alt="Logo" class="topbar-logo-img" />
+    </header>
+
+    <!-- MOBILE NAV DRAWER -->
+    <div class="nav-drawer-backdrop hidden" id="nav-drawer-backdrop"></div>
+    <div class="nav-drawer hidden" id="nav-drawer">
+      <button class="nav-drawer-close" id="nav-drawer-close">✕</button>
+      <nav class="drawer-nav">
+        <button class="nav-item active" data-panel="ask">💬 Ask Anything</button>
+        <button class="nav-item" data-panel="timeline">📅 Election Timeline</button>
+        <button class="nav-item" data-panel="howtovote">✅ How to Vote</button>
+        <button class="nav-item" data-panel="quiz">🧠 Test Yourself</button>
+        <button class="nav-item" data-panel="facts">📊 Key Facts</button>
+      </nav>
+    </div>
+
+    <!-- ════════════ PANELS ════════════ -->
+    <main class="main-content">
+
+      <!-- ── ASK ANYTHING PANEL ── -->
+      <section id="panel-ask" class="panel active">
+        <div class="chat-header glass-card">
+          <div class="chat-header-left">
+            <h1>Ask Anything About Indian Elections</h1>
+            <p class="chat-subtitle">Powered by Gemini AI — Get accurate, nonpartisan answers</p>
+          </div>
+          <div class="ai-badge"><span class="ai-dot"></span> Gemini AI</div>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+          <!-- Messages injected here -->
+        </div>
+        <div class="chat-suggestions" id="chat-suggestions">
+          <button class="suggestion-chip" data-q="What is EVM and how does it work?">🗳️ What is EVM?</button>
+          <button class="suggestion-chip" data-q="What is NOTA and when should I use it?">🚫 What is NOTA?</button>
+          <button class="suggestion-chip" data-q="How do I register as a voter in India?">📋 Voter Registration</button>
+          <button class="suggestion-chip" data-q="What are the eligibility criteria for voting in India?">👤 Who Can Vote?</button>
+          <button class="suggestion-chip" data-q="What is the Model Code of Conduct?">⚖️ Model Code of Conduct</button>
+          <button class="suggestion-chip" data-q="How are Lok Sabha seats distributed among states?">🏛️ Lok Sabha Seats</button>
+          <button class="suggestion-chip" data-q="What documents do I need at the polling booth?">📄 Required Documents</button>
+          <button class="suggestion-chip" data-q="What is the role of the Election Commission of India?">🇮🇳 Role of ECI</button>
+        </div>
+        <form class="chat-input-bar" id="chat-form" autocomplete="off">
+          <input type="text" id="chat-input" class="chat-input" placeholder="Ask about Indian elections…" aria-label="Type your election question" />
+          <button type="submit" class="btn-send" id="chat-send-btn" aria-label="Send message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+      </section>
+
+      <!-- ── ELECTION TIMELINE PANEL ── -->
+      <section id="panel-timeline" class="panel">
+        <div class="panel-header glass-card">
+          <h1>Election Timeline</h1>
+          <p>All 8 phases of an Indian election cycle — from ECI announcement to government formation</p>
+        </div>
+        <div class="timeline-vertical" id="timeline-container">
+          <!-- Generated via JS -->
+        </div>
+      </section>
+
+      <!-- ── HOW TO VOTE PANEL ── -->
+      <section id="panel-howtovote" class="panel">
+        <div class="panel-header glass-card">
+          <h1>How to Vote — Step by Step</h1>
+          <p>8 easy steps from checking the voter roll to casting your EVM vote</p>
+        </div>
+        <div class="vote-steps-grid" id="vote-steps-grid">
+          <!-- Generated via JS -->
+        </div>
+      </section>
+
+      <!-- ── TEST YOURSELF PANEL ── -->
+      <section id="panel-quiz" class="panel">
+        <div class="panel-header glass-card">
+          <h1>Test Yourself</h1>
+          <p>How well do you know Indian elections? Take the quiz and find out!</p>
+        </div>
+        <div class="quiz-container" id="quiz-container">
+          <div class="quiz-start-card glass-card" id="quiz-start-card">
+            <div class="quiz-start-icon">🧠</div>
+            <h3>Indian Election Knowledge Quiz</h3>
+            <p>Answer questions about voting age, NOTA, Lok Sabha, EVM, MCC, and ECI</p>
+            <div class="quiz-meta">
+              <span class="quiz-meta-item">📝 <span id="quiz-total-count">10</span> Questions</span>
+              <span class="quiz-meta-item">⏱️ No Time Limit</span>
+              <span class="quiz-meta-item">🎯 Instant Feedback</span>
+            </div>
+            <button class="btn-primary btn-glow" id="quiz-start-btn">Start Quiz →</button>
+          </div>
+          <div class="quiz-play-area hidden" id="quiz-play-area">
+            <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quiz-progress-fill"></div></div>
+            <div class="quiz-score-display" id="quiz-score-display">Score: 0</div>
+            <div class="quiz-card glass-card" id="quiz-card">
+              <!-- Quiz question injected here -->
+            </div>
+          </div>
+          <div class="quiz-result-area hidden" id="quiz-result-area">
+            <!-- Results injected here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ── KEY FACTS PANEL ── -->
+      <section id="panel-facts" class="panel">
+        <div class="panel-header glass-card">
+          <h1>Key Facts — Indian Elections</h1>
+          <p>At-a-glance statistics about the world's largest democracy</p>
+        </div>
+        <div class="facts-grid" id="facts-grid">
+          <!-- Generated via JS -->
+        </div>
+        <div class="facts-extra glass-card" id="facts-extra">
+          <!-- Generated via JS -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    const enterBtn = document.getElementById('enter-btn');
+    const splashScreen = document.getElementById('splash-screen');
+    const appShell = document.getElementById('app-shell');
+
+    if (enterBtn) {
+      enterBtn.addEventListener('click', () => {
+        splashScreen.classList.add('hidden');
+        appShell.classList.remove('hidden');
+        document.dispatchEvent(new CustomEvent('userAuthenticated'));
+      });
+    }
+  </script>
+</body>
+</html>
